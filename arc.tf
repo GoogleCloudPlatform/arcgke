@@ -154,6 +154,10 @@ resource "kubernetes_network_policy" "runner_network_policy" {
   }
 
   for_each = {for index, ars in var.arc_runner_sets: "${ars.namespace}-${ars.name}" => ars}
+
+  depends_on = [
+    kubernetes_namespace.arc_runners
+  ]
 }
 
 
@@ -344,6 +348,7 @@ resource "helm_release" "arc_runners" {
   for_each = {for index, ars in var.arc_runner_sets: "${ars.namespace}-${ars.name}" => ars}
 
   depends_on = [
+    helm_release.arc_systems,
     null_resource.nodepools,
     kubernetes_job.secret_sync
   ]
