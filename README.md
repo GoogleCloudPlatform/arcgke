@@ -40,14 +40,15 @@ support](https://cloud.google.com/support).**
     Created secret [github_auth].
 ```
 
-    If you use a personal access token to authenticate:
+If you use a personal access token to authenticate:
 
 ```
     $ echo -n "ghp_..." | gcloud secrets versions add github_auth --data-file=-
     Created version [1] of the secret [github_auth].
 ```
 
-    If you use a GitHub application to authenticate, do it like this:
+If you use a GitHub application to authenticate, do it like this:
+
 ```
     $ gcloud secrets versions add github_auth --data-file=github-app-rsa.key
     Created version [1] of the secret [github_auth].
@@ -70,7 +71,8 @@ arc_runner_sets = [
             config_url = "https://github.com/your-org/your-repo"
         }
     }
-]```
+]
+```
 
 -   Run terraform:
 
